@@ -6,8 +6,7 @@
   lameenc = pkgs.callPackage ./lameenc { };
   stempeg = pkgs.callPackage ./stempeg { };
   openunmix = pkgs.callPackage ./openunmix { };
-  # TODO
-  #pedalboard = pkgs.callPackage ./pedalboard{ };
+  pedalboard = pkgs.callPackage ./pedalboard { };
   read-version = pkgs.callPackage ./read-version { };
   submitit = pkgs.callPackage ./submitit { };
   treetable = pkgs.callPackage ./treetable { };
