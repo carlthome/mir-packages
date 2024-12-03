@@ -1,6 +1,7 @@
 { lib
 , python3
 , fetchFromGitHub
+, fetchurl
 , lame
 , cmake
 , stdenv
@@ -8,15 +9,27 @@
 
 python3.pkgs.buildPythonPackage rec {
   pname = "lameenc";
-  version = "1.6.1";
+  version = "1.7.0";
   format = "other";
 
-  src = fetchFromGitHub {
-    owner = "chrisstaite";
-    repo = "lameenc";
-    rev = "v${version}";
-    hash = "sha256-+EnJ4v6Ol5tnFKpFCx8w1Bhu5NsaIK1OX/sjEhnMHL8=";
-  };
+  srcs = [
+    (fetchFromGitHub {
+      owner = "chrisstaite";
+      repo = "lameenc";
+      rev = "v${version}";
+      name = pname;
+      hash = "sha256-anZEJNr9eZP94fTkrzXoC8uxVoItaGgVj4jQZinQtoo=";
+    })
+    (fetchurl {
+      url = "https://sourceforge.net/projects/lame/files/lame/3.100/lame-3.100.tar.gz/download";
+      hash = "sha256-3f42yrhzeUA4riwSEFV600hXpLa9xRV4XR2p4XWx2h4=";
+      name = "lame-3.100.tar.gz";
+    })
+  ];
+
+  sourceRoot = pname;
+
+  patches = [ ./no-download.patch ];
 
   nativeBuildInputs = with python3.pkgs; [
     setuptools

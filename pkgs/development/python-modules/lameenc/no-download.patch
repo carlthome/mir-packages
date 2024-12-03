@@ -1,0 +1,15 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 3b2648c..4e71264 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -56,9 +56,7 @@ endif ()
+ include(ExternalProject)
+ ExternalProject_Add(lame
+     PREFIX "${CMAKE_CURRENT_BINARY_DIR}/lame"
+-    URL https://sourceforge.net/projects/lame/files/lame/3.100/lame-3.100.tar.gz/download
+-    URL_HASH SHA256=ddfe36cab873794038ae2c1210557ad34857a4b6bdc515785d1da9e175b1da1e
+-    DOWNLOAD_NO_PROGRESS 1
++    SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/../../lame-3.100"
+     PATCH_COMMAND "${CMAKE_COMMAND}" 
+         -D "SOURCE_DIR=<SOURCE_DIR>"
+         -P "${CMAKE_CURRENT_SOURCE_DIR}/patch-lame.cmake"
