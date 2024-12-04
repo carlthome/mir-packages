@@ -12,6 +12,7 @@
   submitit = pkgs.callPackage ./submitit { };
   treetable = pkgs.callPackage ./treetable { };
   vmo = pkgs.callPackage ./vmo { };
+  madmom = pkgs.callPackage ./madmom { };
   music21 = pkgs.callPackage ./music21 { };
   dali-dataset = pkgs.callPackage ./dali-dataset { };
   mido = pkgs.callPackage ./mido { };

@@ -21,9 +21,9 @@ let
     ];
   };
   pythonPackages = import ./pkgs/development/python-modules { inherit pkgs; };
-  shell = pkgs.buildEnv {
-    name = "ipython";
-    paths = [ (pkgs.python3.withPackages (ps: [ ps.ipython ] ++ builtins.attrValues pythonPackages)) ];
+  pythonEnv = pkgs.python3.buildEnv.override {
+    extraLibs = (with pkgs.python3Packages; [ ipython ]) ++ builtins.attrValues pythonPackages;
+    ignoreCollisions = true;
   };
 in
-pythonPackages // { default = shell; }
+pythonPackages // { default = pythonEnv; }
