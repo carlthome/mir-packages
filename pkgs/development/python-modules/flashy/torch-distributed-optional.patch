@@ -1,0 +1,14 @@
+diff --git a/flashy/distrib.py b/flashy/distrib.py
+index 49a7877..08356c9 100644
+--- a/flashy/distrib.py
++++ b/flashy/distrib.py
+@@ -42,8 +42,10 @@ def is_distributed():
+     return world_size() > 1
+
+
+-def all_reduce(tensor: torch.Tensor, op=distributed.ReduceOp.SUM):
++def all_reduce(tensor: torch.Tensor, op=None):
+     if is_distributed():
++        if op is None:
++            op = torch.distributed.ReduceOp.SUM
+         return distributed.all_reduce(tensor, op)
