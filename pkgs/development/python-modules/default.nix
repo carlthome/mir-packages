@@ -15,6 +15,10 @@
   music21 = pkgs.callPackage ./music21 { };
   dali-dataset = pkgs.callPackage ./dali-dataset { };
   mido = pkgs.callPackage ./mido { };
+  soundcloud-lib = pkgs.callPackage ./soundcloud-lib { };
+  opencv-contrib-python = pkgs.callPackage ./opencv-contrib-python { };
+  mediapipe = pkgs.callPackage ./mediapipe { inherit opencv-contrib-python; };
+  audioscrape = pkgs.callPackage ./audioscrape { inherit mediapipe soundcloud-lib; };
   pretty-midi = pkgs.callPackage ./pretty-midi { inherit mido; };
   mirdata = pkgs.callPackage ./mirdata { inherit jams pretty-midi music21 dali-dataset; };
   hydra-colorlog = pkgs.callPackage ./hydra-colorlog { inherit read-version; };
